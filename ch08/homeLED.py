@@ -8,8 +8,8 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 pins = {
-    23 : {'name':'RED LED','state':GPIO.LOW}
-    24 : {'name':'YELLO LED','state':GPIO.LOW}
+    23 : {'name':'RED LED','state':GPIO.LOW},
+    24 : {'name':'YELLO LED','state':GPIO.LOW},
     25 : {'name':'GREEN LED','state':GPIO.LOW}
 }
 
@@ -17,7 +17,7 @@ for pin in pins:
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,GPIO.LOW)
 
-@app.rout("/")
+@app.route("/")
 def main();
     for pin in pins:
         pins[pin]['state']=GPIO.input(pin)
@@ -42,5 +42,5 @@ def action(changePin,action)
 
     return render_template('homeLED.html', **templateData)
 
-if __nmae__ == "__main__":
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)
